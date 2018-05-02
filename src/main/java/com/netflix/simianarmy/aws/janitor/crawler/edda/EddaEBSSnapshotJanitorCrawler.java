@@ -154,16 +154,7 @@ public class EddaEBSSnapshotJanitorCrawler implements JanitorCrawler {
                 .withLaunchTime(new Date(startTime));
         JsonNode tags = jsonNode.get("tags");
 
-        if (tags == null || !tags.isArray() || tags.size() == 0) {
-            LOGGER.debug(String.format("No tags is found for %s", resource.getId()));
-        } else {
-            for (Iterator<JsonNode> it = tags.getElements(); it.hasNext();) {
-                JsonNode tag = it.next();
-                String key = tag.get("key").getTextValue();
-                String value = tag.get("value").getTextValue();
-                resource.setTag(key, value);
-            }
-        }
+        EddaASGJanitorCrawler.parseTags(resource, tags, LOGGER);
         JsonNode description = jsonNode.get("description");
         if (description != null) {
             resource.setDescription(description.getTextValue());

@@ -175,16 +175,7 @@ public class EddaASGJanitorCrawler implements JanitorCrawler {
                 .withLaunchTime(new Date(createdTime));
 
         JsonNode tags = jsonNode.get("tags");
-        if (tags == null || !tags.isArray() || tags.size() == 0) {
-            LOGGER.debug(String.format("No tags is found for %s", resource.getId()));
-        } else {
-            for (Iterator<JsonNode> it = tags.getElements(); it.hasNext();) {
-                JsonNode tag = it.next();
-                String key = tag.get("key").getTextValue();
-                String value = tag.get("value").getTextValue();
-                resource.setTag(key, value);
-            }
-        }
+        parseTags(resource, tags, LOGGER);
 
         String owner = getOwnerEmailForResource(resource);
         if (owner != null) {
@@ -240,6 +231,19 @@ public class EddaASGJanitorCrawler implements JanitorCrawler {
         }
         return resource;
 
+    }
+
+    static void parseTags(Resource resource, JsonNode tags, Logger logger) {
+        if (tags == null || !tags.isArray() || tags.size() == 0) {
+            logger.debug(String.format("No tags is found for %s", resource.getId()));
+        } else {
+            for (Iterator<JsonNode> it = tags.getElements(); it.hasNext();) {
+                JsonNode tag = it.next();
+                String key = tag.get("key").getTextValue();
+                String value = tag.get("value").getTextValue();
+                resource.setTag(key, value);
+            }
+        }
     }
 
     private Map<String, Long> getLaunchConfigCreationTimes(String region) {

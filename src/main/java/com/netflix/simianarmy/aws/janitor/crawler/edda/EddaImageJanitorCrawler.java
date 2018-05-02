@@ -296,16 +296,7 @@ public class EddaImageJanitorCrawler implements JanitorCrawler {
         }
 
         JsonNode tags = jsonNode.get("tags");
-        if (tags == null || !tags.isArray() || tags.size() == 0) {
-            LOGGER.debug(String.format("No tags is found for %s", resource.getId()));
-        } else {
-            for (Iterator<JsonNode> it = tags.getElements(); it.hasNext();) {
-                JsonNode tag = it.next();
-                String key = tag.get("key").getTextValue();
-                String value = tag.get("value").getTextValue();
-                resource.setTag(key, value);
-            }
-        }
+        EddaASGJanitorCrawler.parseTags(resource, tags, LOGGER);
 
         JsonNode descNode = jsonNode.get("description");
         if (descNode != null && !descNode.isNull()) {
@@ -490,14 +481,7 @@ public class EddaImageJanitorCrawler implements JanitorCrawler {
     private String getImageIdsString(List<Resource> resources) {
         StringBuilder sb = new StringBuilder();
         boolean isFirst = true;
-        for (Resource resource : resources) {
-            if (!isFirst) {
-                sb.append(',');
-            } else {
-                isFirst = false;
-            }
-            sb.append(resource.getId());
-        }
+        EddaEBSVolumeJanitorCrawler.appendCommaWhenNotFirst(resources, sb, isFirst);
         return sb.toString();
     }
 

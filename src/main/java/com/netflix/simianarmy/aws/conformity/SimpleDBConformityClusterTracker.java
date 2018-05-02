@@ -39,6 +39,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.netflix.simianarmy.aws.janitor.SimpleDBJanitorResourceTracker.getItems;
+
 /**
  * The ConformityResourceTracker implementation in SimpleDB.
  */
@@ -214,18 +216,6 @@ public class SimpleDBConformityClusterTracker implements ConformityClusterTracke
     }
 
     private List<Item> querySimpleDBItems(String query) {
-        Validate.notNull(query);
-        String nextToken = null;
-        List<Item> items = new ArrayList<Item>();
-        do {
-            SelectRequest request = new SelectRequest(query);
-            request.setNextToken(nextToken);
-            request.setConsistentRead(Boolean.TRUE);
-            SelectResult result = this.simpleDBClient.select(request);
-            items.addAll(result.getItems());
-            nextToken = result.getNextToken();
-        } while (nextToken != null);
-
-        return items;
+        return getItems(query, this.simpleDBClient);
     }
 }

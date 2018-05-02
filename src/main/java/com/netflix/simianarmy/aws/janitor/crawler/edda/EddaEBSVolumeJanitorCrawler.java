@@ -349,6 +349,13 @@ public class EddaEBSVolumeJanitorCrawler implements JanitorCrawler {
     private String getBatchUrl(String region, List<Resource> batch) {
         StringBuilder batchUrl = new StringBuilder(eddaClient.getBaseUrl(region) + "/aws/volumes/");
         boolean isFirst = true;
+        appendCommaWhenNotFirst(batch, batchUrl, isFirst);
+        batchUrl.append(";data.state=in-use;_since=0;_expand;_meta:"
+                + "(ltime,data:(volumeId,attachments:(deleteOnTermination,instanceId)))");
+        return batchUrl.toString();
+    }
+
+    static void appendCommaWhenNotFirst(List<Resource> batch, StringBuilder batchUrl, boolean isFirst) {
         for (Resource resource : batch) {
             if (!isFirst) {
                 batchUrl.append(',');
@@ -357,8 +364,5 @@ public class EddaEBSVolumeJanitorCrawler implements JanitorCrawler {
             }
             batchUrl.append(resource.getId());
         }
-        batchUrl.append(";data.state=in-use;_since=0;_expand;_meta:"
-                + "(ltime,data:(volumeId,attachments:(deleteOnTermination,instanceId)))");
-        return batchUrl.toString();
     }
 }

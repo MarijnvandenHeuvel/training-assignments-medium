@@ -177,7 +177,7 @@ public class SimpleDBJanitorResourceTracker implements JanitorResourceTracker {
      * @param item the item from SimpleDB
      * @return the AWSResource object for the SimpleDB item
      */
-    protected Resource parseResource(Item item) {
+    private Resource parseResource(Item item) {
         Map<String, String> fieldToValue = new HashMap<String, String>();
         SimpleDBConformityClusterTracker.mapfieldToValues(item, fieldToValue);
         return AWSResource.parseFieldtoValueMap(fieldToValue);
@@ -189,11 +189,15 @@ public class SimpleDBJanitorResourceTracker implements JanitorResourceTracker {
      * @param resource
      * @return the SimpleDB item name for the resource
      */
-    protected String getSimpleDBItemName(Resource resource) {
+    String getSimpleDBItemName(Resource resource) {
         return String.format("%s-%s-%s", resource.getResourceType().name(), resource.getId(), resource.getRegion());
     }
 
     private List<Item> querySimpleDBItems(String query) {
+        return getItems(query, this.simpleDBClient);
+    }
+
+    public static List<Item> getItems(String query, AmazonSimpleDB simpleDBClient) {
         Validate.notNull(query);
         String nextToken = null;
         List<Item> items = new ArrayList<Item>();
@@ -201,7 +205,7 @@ public class SimpleDBJanitorResourceTracker implements JanitorResourceTracker {
             SelectRequest request = new SelectRequest(query);
             request.setNextToken(nextToken);
             request.setConsistentRead(Boolean.TRUE);
-            SelectResult result = this.simpleDBClient.select(request);
+            SelectResult result = simpleDBClient.select(request);
             items.addAll(result.getItems());
             nextToken = result.getNextToken();
         } while (nextToken != null);
