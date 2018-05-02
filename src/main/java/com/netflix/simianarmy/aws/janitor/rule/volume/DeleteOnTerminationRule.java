@@ -86,14 +86,12 @@ public class DeleteOnTerminationRule implements Rule {
         String janitorTag = resource.getTag(JanitorMonkey.JANITOR_TAG);
         if (janitorTag != null) {
             if ("donotmark".equals(janitorTag)) {
-                LOGGER.info(String.format("The volume %s is tagged as not handled by Janitor",
-                        resource.getId()));
+                LOGGER.info(String.format("The volume %s is tagged as not handled by Janitor", resource.getId()));
                 return true;
             }
             try {
                 // Owners can tag the volume with a termination date in the "janitor" tag.
-                Date userSpecifiedDate = new Date(
-                        TERMINATION_DATE_FORMATTER.parseDateTime(janitorTag).getMillis());
+                Date userSpecifiedDate = new Date(TERMINATION_DATE_FORMATTER.parseDateTime(janitorTag).getMillis());
                 resource.setExpectedTerminationTime(userSpecifiedDate);
                 resource.setTerminationReason(String.format("User specified termination date %s", janitorTag));
                 return false;
