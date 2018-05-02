@@ -23,6 +23,7 @@ import com.netflix.simianarmy.Resource;
 import com.netflix.simianarmy.Resource.CleanupState;
 import com.netflix.simianarmy.ResourceType;
 import com.netflix.simianarmy.aws.AWSResource;
+import com.netflix.simianarmy.aws.conformity.SimpleDBConformityClusterTracker;
 import com.netflix.simianarmy.client.aws.AWSClient;
 import com.netflix.simianarmy.janitor.JanitorResourceTracker;
 import org.apache.commons.lang.Validate;
@@ -178,13 +179,7 @@ public class SimpleDBJanitorResourceTracker implements JanitorResourceTracker {
      */
     protected Resource parseResource(Item item) {
         Map<String, String> fieldToValue = new HashMap<String, String>();
-        for (Attribute attr : item.getAttributes()) {
-            String name = attr.getName();
-            String value = attr.getValue();
-            if (name != null && value != null) {
-                fieldToValue.put(name, value);
-            }
-        }
+        SimpleDBConformityClusterTracker.mapfieldToValues(item, fieldToValue);
         return AWSResource.parseFieldtoValueMap(fieldToValue);
     }
 

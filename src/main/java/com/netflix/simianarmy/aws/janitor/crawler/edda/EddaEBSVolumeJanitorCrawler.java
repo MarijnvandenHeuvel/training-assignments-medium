@@ -240,14 +240,7 @@ public class EddaEBSVolumeJanitorCrawler implements JanitorCrawler {
         Validate.notNull(resources);
         LOGGER.info(String.format("Updating the latest attachment info for %d resources", resources.size()));
         Map<String, List<Resource>> regionToResources = Maps.newHashMap();
-        for (Resource resource : resources) {
-            List<Resource> regionalList = regionToResources.get(resource.getRegion());
-            if (regionalList == null) {
-                regionalList = Lists.newArrayList();
-                regionToResources.put(resource.getRegion(), regionalList);
-            }
-            regionalList.add(resource);
-        }
+        AddResourcesToRegionalList(resources, regionToResources);
         for (Map.Entry<String, List<Resource>> entry : regionToResources.entrySet()) {
             LOGGER.info(String.format("Updating the latest attachment info for %d resources in region %s",
                     resources.size(), entry.getKey()));
@@ -302,6 +295,17 @@ public class EddaEBSVolumeJanitorCrawler implements JanitorCrawler {
                     }
                 }
             }
+        }
+    }
+
+    static void AddResourcesToRegionalList(List<Resource> resources, Map<String, List<Resource>> regionToResources) {
+        for (Resource resource : resources) {
+            List<Resource> regionalList = regionToResources.get(resource.getRegion());
+            if (regionalList == null) {
+                regionalList = Lists.newArrayList();
+                regionToResources.put(resource.getRegion(), regionalList);
+            }
+            regionalList.add(resource);
         }
     }
 

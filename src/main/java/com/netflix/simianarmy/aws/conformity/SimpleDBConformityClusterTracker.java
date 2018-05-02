@@ -189,6 +189,11 @@ public class SimpleDBConformityClusterTracker implements ConformityClusterTracke
      */
     protected Cluster parseCluster(Item item) {
         Map<String, String> fieldToValue = new HashMap<String, String>();
+        mapfieldToValues(item, fieldToValue);
+        return Cluster.parseFieldToValueMap(fieldToValue);
+    }
+
+    public static void mapfieldToValues(Item item, Map<String, String> fieldToValue) {
         for (Attribute attr : item.getAttributes()) {
             String name = attr.getName();
             String value = attr.getValue();
@@ -196,7 +201,6 @@ public class SimpleDBConformityClusterTracker implements ConformityClusterTracke
                 fieldToValue.put(name, value);
             }
         }
-        return Cluster.parseFieldToValueMap(fieldToValue);
     }
 
     /**
