@@ -20,6 +20,7 @@ package com.netflix.simianarmy.basic.chaos;
 import java.util.Arrays;
 import java.util.List;
 
+import com.netflix.simianarmy.aws.Email;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -130,7 +131,11 @@ public class BasicChaosEmailNotifier extends ChaosEmailNotifier {
             subject = buildEmailSubject(to);
         }
 
-        sendEmail(to, subject, body);
+        Email email = new Email();
+        email.setTo(to);
+        email.setBody(body);
+        email.setSubject(subject);
+        sendEmail(email);
     }
 
     @Override

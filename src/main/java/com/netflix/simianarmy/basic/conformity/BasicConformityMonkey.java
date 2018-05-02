@@ -21,6 +21,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.netflix.simianarmy.MonkeyCalendar;
 import com.netflix.simianarmy.MonkeyConfiguration;
+import com.netflix.simianarmy.aws.Email;
 import com.netflix.simianarmy.conformity.Cluster;
 import com.netflix.simianarmy.conformity.ClusterCrawler;
 import com.netflix.simianarmy.conformity.ConformityClusterTracker;
@@ -231,7 +232,11 @@ public class BasicConformityMonkey extends ConformityMonkey {
                 appendSummary(message, "conforming", conformingClusters, region, false);
             }
             String subject = getSummaryEmailSubject();
-            emailNotifier.sendEmail(summaryEmailTarget, subject, message.toString());
+            Email email = new Email();
+            email.setTo(summaryEmailTarget);
+            email.setSubject(subject);
+            email.setBody(message.toString());
+            emailNotifier.sendEmail(email);
         }
     }
 

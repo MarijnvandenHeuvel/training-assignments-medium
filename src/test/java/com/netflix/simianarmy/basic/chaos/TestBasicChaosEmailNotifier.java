@@ -24,6 +24,7 @@ import static org.mockito.Mockito.verify;
 
 import java.util.Properties;
 
+import com.netflix.simianarmy.aws.Email;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -61,10 +62,14 @@ public class TestBasicChaosEmailNotifier {
             + " is being terminated by Chaos monkey.";
 
     private String defaultSubject = "Chaos Monkey Termination Notification for " + to;
+    Email email = new Email();
 
     @BeforeMethod
     public void beforeMethod() {
         properties = new Properties();
+        email.setSubject(defaultSubject);
+        email.setBody(defaultBody);
+        email.setTo(to);
     }
 
     @Test
@@ -171,9 +176,9 @@ public class TestBasicChaosEmailNotifier {
         properties.setProperty("simianarmy.chaos.notification.sourceEmail", to);
         BasicChaosEmailNotifier spyBasicChaosEmailNotifier = spy(new BasicChaosEmailNotifier(new BasicConfiguration(
                 properties), sesClient, null));
-        doNothing().when(spyBasicChaosEmailNotifier).sendEmail(to, defaultSubject, defaultBody);
+        doNothing().when(spyBasicChaosEmailNotifier).sendEmail(email);
         spyBasicChaosEmailNotifier.buildAndSendEmail(to, testInstanceGroup, instanceId, null);
-        verify(spyBasicChaosEmailNotifier).sendEmail(to, defaultSubject, defaultBody);
+        verify(spyBasicChaosEmailNotifier).sendEmail(email);
     }
 
     @Test
@@ -182,9 +187,9 @@ public class TestBasicChaosEmailNotifier {
         properties.setProperty("simianarmy.chaos.notification.sourceEmail", to);
         BasicChaosEmailNotifier spyBasicChaosEmailNotifier = spy(new BasicChaosEmailNotifier(new BasicConfiguration(
                 properties), sesClient, null));
-        doNothing().when(spyBasicChaosEmailNotifier).sendEmail(to, defaultBody, defaultBody);
+        doNothing().when(spyBasicChaosEmailNotifier).sendEmail(email);
         spyBasicChaosEmailNotifier.buildAndSendEmail(to, testInstanceGroup, instanceId, null);
-        verify(spyBasicChaosEmailNotifier).sendEmail(to, defaultBody, defaultBody);
+        verify(spyBasicChaosEmailNotifier).sendEmail(email);
     }
 
 }

@@ -22,6 +22,7 @@ import com.netflix.servo.annotations.Monitor;
 import com.netflix.servo.monitor.Monitors;
 import com.netflix.simianarmy.*;
 import com.netflix.simianarmy.MonkeyRecorder.Event;
+import com.netflix.simianarmy.aws.Email;
 import com.netflix.simianarmy.janitor.AbstractJanitor;
 import com.netflix.simianarmy.janitor.JanitorEmailNotifier;
 import com.netflix.simianarmy.janitor.JanitorMonkey;
@@ -210,7 +211,11 @@ public class BasicJanitorMonkey extends JanitorMonkey {
                         janitor.getRegion());
             }
             String subject = getSummaryEmailSubject();
-            emailNotifier.sendEmail(summaryEmailTarget, subject, message.toString());
+            Email email = new Email();
+            email.setTo(summaryEmailTarget);
+            email.setSubject(subject);
+            email.setBody(message.toString());
+            emailNotifier.sendEmail(email);
         }
     }
 

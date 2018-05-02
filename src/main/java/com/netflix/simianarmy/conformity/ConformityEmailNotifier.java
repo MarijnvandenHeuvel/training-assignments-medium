@@ -21,6 +21,7 @@ import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClient;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.netflix.simianarmy.aws.AWSEmailNotifier;
+import com.netflix.simianarmy.aws.Email;
 import org.apache.commons.lang.Validate;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -186,10 +187,12 @@ public class ConformityEmailNotifier  extends AWSEmailNotifier {
         }
         emailBuilder.setEmailToClusters(emailToClusters, rules);
         for (Map.Entry<String, Collection<Cluster>> entry : emailToClusters.entrySet()) {
-            String email = entry.getKey();
-            String emailBody = emailBuilder.buildEmailBody(email);
-            String subject = buildEmailSubject(email);
-            sendEmail(email, subject, emailBody);
+            String to = entry.getKey();
+            Email email = new Email();
+            email.setTo(entry.getKey());
+            email.setSubject(emailBuilder.buildEmailBody(to));
+            email.setBody(buildEmailSubject(to));
+            sendEmail(email);
             for (Cluster cluster : entry.getValue()) {
                 LOGGER.debug(String.format("Notification is sent for cluster %s to %s", cluster.getName(), email));
             }

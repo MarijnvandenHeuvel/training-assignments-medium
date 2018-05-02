@@ -18,6 +18,8 @@
 package com.netflix.simianarmy;
 
 
+import com.netflix.simianarmy.aws.Email;
+
 /** The interface for the email notifier used by monkeys. */
 public interface MonkeyEmailNotifier {
 
@@ -51,9 +53,6 @@ public interface MonkeyEmailNotifier {
 
     /**
      * Sends an email.
-     * @param to the address sent to
-     * @param subject the email subject
-     * @param body the email body
      */
-    void sendEmail(String to, String subject, String body);
+    void sendEmail(Email email);
 }

@@ -270,19 +270,21 @@ public abstract class AbstractJanitor implements Janitor {
         LOGGER.info(String.format("Unmarking resource %s", resource.getId()));
         resource.setState(CleanupState.UNMARKED);
         if (!leashed) {
-            if (recorder != null) {
-                Event evt = recorder.newEvent(
-                        Type.JANITOR, EventTypes.UNMARK_RESOURCE, region, resource.getId());
-                addFieldsAndTagsToEvent(resource, evt);
-                recorder.recordEvent(evt);
-            }
-            resourceTracker.addOrUpdate(resource);
+            recordEvent(resource);
         } else {
-            LOGGER.info(String.format(
-                    "The janitor is leashed, no data change is made for unmarking the resource %s.",
-                    resource.getId()));
+            LOGGER.info(String.format("The janitor is leashed, no data change is made for unmarking the resource %s.", resource.getId()));
         }
         unmarkedResources.add(resource);
+    }
+
+    private void recordEvent(Resource resource) {
+        if (recorder != null) {
+            Event evt = recorder.newEvent(
+                    Type.JANITOR, EventTypes.UNMARK_RESOURCE, region, resource.getId());
+            addFieldsAndTagsToEvent(resource, evt);
+            recorder.recordEvent(evt);
+        }
+        resourceTracker.addOrUpdate(resource);
     }
 
     private void markValidResource(Date now, Resource resource, Resource trackedResource) {

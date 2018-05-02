@@ -22,6 +22,7 @@ import com.netflix.simianarmy.MonkeyCalendar;
 import com.netflix.simianarmy.Resource;
 import com.netflix.simianarmy.Resource.CleanupState;
 import com.netflix.simianarmy.aws.AWSEmailNotifier;
+import com.netflix.simianarmy.aws.Email;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
@@ -187,10 +188,12 @@ public class JanitorEmailNotifier extends AWSEmailNotifier {
         emailBuilder.setEmailToResources(emailToResources);
         Date now = calendar.now().getTime();
         for (Map.Entry<String, Collection<Resource>> entry : emailToResources.entrySet()) {
-            String email = entry.getKey();
-            String emailBody = emailBuilder.buildEmailBody(email);
-            String subject = buildEmailSubject(email);
-            sendEmail(email, subject, emailBody);
+            String to = entry.getKey();
+            Email email = new Email();
+            email.setTo(to);
+            email.setBody(emailBuilder.buildEmailBody(to));
+            email.setSubject(buildEmailSubject(to));
+            sendEmail(email);
             for (Resource r : entry.getValue()) {
                 LOGGER.debug(String.format("Notification is sent for resource %s", r.getId()));
                 r.setNotificationTime(now);
