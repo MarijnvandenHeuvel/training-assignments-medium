@@ -77,19 +77,19 @@ public class BasicScheduler implements MonkeyScheduler {
         scheduler = Executors.newScheduledThreadPool(concurrent);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public int frequency() {
         return frequency;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public TimeUnit frequencyUnit() {
         return frequencyUnit;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void start(Monkey monkey, Runnable command) {
         long cycle = TimeUnit.MILLISECONDS.convert(frequency(), frequencyUnit());
@@ -117,7 +117,7 @@ public class BasicScheduler implements MonkeyScheduler {
         }
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void stop(Monkey monkey) {
         if (futures.containsKey(monkey.type().name())) {

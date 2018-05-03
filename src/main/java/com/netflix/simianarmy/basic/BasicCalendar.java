@@ -101,25 +101,25 @@ public class BasicCalendar implements MonkeyCalendar {
         tz = timezone;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public int openHour() {
         return openHour;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public int closeHour() {
         return closeHour;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public Calendar now() {
         return Calendar.getInstance(tz);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public boolean isMonkeyTime(Monkey monkey) {
         if (cfg != null && cfg.getStr("simianarmy.calendar.isMonkeyTime") != null) {

@@ -61,22 +61,22 @@ public class BasicInstanceGroup implements InstanceGroup {
 
 
 
-    /** {@inheritDoc} */
+
     public GroupType type() {
         return type;
     }
 
-    /** {@inheritDoc} */
+
     public String name() {
         return name;
     }
 
-    /** {@inheritDoc} */
+
     public String region() {
         return region;
     }
 
-    /** {@inheritDoc} */
+
     public List<TagDescription> tags() {
         return tags;
     }
@@ -84,19 +84,19 @@ public class BasicInstanceGroup implements InstanceGroup {
     /** The list. */
     private List<String> list = new LinkedList<String>();
 
-    /** {@inheritDoc} */
+
     @Override
     public List<String> instances() {
         return Collections.unmodifiableList(list);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void addInstance(String instance) {
         list.add(instance);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public BasicInstanceGroup copyAs(String newName) {
         BasicInstanceGroup newGroup = new BasicInstanceGroup(newName, this.type(), this.region(), this.tags());

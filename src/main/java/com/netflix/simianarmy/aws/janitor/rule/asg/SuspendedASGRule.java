@@ -71,7 +71,7 @@ public class SuspendedASGRule implements Rule {
         this.instanceValidator = instanceValidator;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public boolean isValid(Resource resource) {
         Validate.notNull(resource);

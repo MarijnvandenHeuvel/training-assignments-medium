@@ -70,7 +70,7 @@ public class SimpleDBJanitorResourceTracker implements JanitorResourceTracker {
         return simpleDBClient;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void addOrUpdate(Resource resource) {
         List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>();

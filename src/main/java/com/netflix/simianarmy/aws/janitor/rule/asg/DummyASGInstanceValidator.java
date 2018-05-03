@@ -30,7 +30,7 @@ public class DummyASGInstanceValidator implements ASGInstanceValidator {
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(DummyASGInstanceValidator.class);
 
-    /** {@inheritDoc} */
+
     @Override
     public boolean hasActiveInstance(Resource resource) {
         String instanceIds = resource.getAdditionalField(ASGJanitorCrawler.ASG_FIELD_INSTANCES);

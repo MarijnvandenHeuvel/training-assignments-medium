@@ -101,19 +101,19 @@ public abstract class ConformityMonkey extends Monkey {
         CONFORMITY
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public final Type type() {
         return Type.CONFORMITY;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public Context context() {
         return ctx;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public abstract void doMonkeyBusiness();
 

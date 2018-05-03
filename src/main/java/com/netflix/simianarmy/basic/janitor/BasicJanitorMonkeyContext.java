@@ -521,13 +521,13 @@ public class BasicJanitorMonkeyContext extends BasicSimianArmyContext implements
         };
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public List<AbstractJanitor> janitors() {
         return janitors;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public JanitorEmailNotifier emailNotifier() {
         return emailNotifier;

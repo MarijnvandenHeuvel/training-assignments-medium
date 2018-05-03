@@ -68,13 +68,13 @@ public class ASGChaosCrawler implements ChaosCrawler {
         this.awsClient = awsClient;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public EnumSet<?> groupTypes() {
         return EnumSet.allOf(Types.class);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public List<InstanceGroup> groups() {
         return groups((String[]) null);

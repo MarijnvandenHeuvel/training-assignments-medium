@@ -94,13 +94,13 @@ public class RDSRecorder implements MonkeyRecorder {
 		return jdbcTemplate;
 	}
 
-    /** {@inheritDoc} */
+
     @Override
     public Event newEvent(MonkeyType monkeyType, EventType eventType, String reg, String id) {
         return new BasicRecorderEvent(monkeyType, eventType, reg, id);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void recordEvent(Event evt) {    	
         String evtTime = String.valueOf(evt.eventTime().getTime());
@@ -135,19 +135,19 @@ public class RDSRecorder implements MonkeyRecorder {
         LOGGER.debug(String.format("%d rows inserted", updated));        
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public List<Event> findEvents(Map<String, String> query, Date after) {
         return findEvents(null, null, query, after);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public List<Event> findEvents(MonkeyType monkeyType, Map<String, String> query, Date after) {
         return findEvents(monkeyType, null, query, after);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public List<Event> findEvents(MonkeyType monkeyType, EventType eventType, Map<String, String> query, Date after) {
         ArrayList<Object> args = new ArrayList<>();

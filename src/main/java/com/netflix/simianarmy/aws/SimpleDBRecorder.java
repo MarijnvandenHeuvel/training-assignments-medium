@@ -162,13 +162,13 @@ public class SimpleDBRecorder implements MonkeyRecorder {
         return enumValue;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public Event newEvent(MonkeyType monkeyType, EventType eventType, String reg, String id) {
         return new BasicRecorderEvent(monkeyType, eventType, reg, id);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void recordEvent(Event evt) {
         String evtTime = String.valueOf(evt.eventTime().getTime());
@@ -239,13 +239,13 @@ public class SimpleDBRecorder implements MonkeyRecorder {
         return list;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public List<Event> findEvents(Map<String, String> query, Date after) {
         return findEvents(query, after.getTime());
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public List<Event> findEvents(MonkeyType monkeyType, Map<String, String> query, Date after) {
         Map<String, String> copy = new LinkedHashMap<String, String>(query);
@@ -253,7 +253,7 @@ public class SimpleDBRecorder implements MonkeyRecorder {
         return findEvents(copy, after);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public List<Event> findEvents(MonkeyType monkeyType, EventType eventType, Map<String, String> query, Date after) {
         Map<String, String> copy = new LinkedHashMap<String, String>(query);

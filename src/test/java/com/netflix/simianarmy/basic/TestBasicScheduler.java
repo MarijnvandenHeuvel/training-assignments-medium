@@ -58,8 +58,6 @@ public class TestBasicScheduler {
         MONKEY
     }
 
-    ;
-
     private enum EventEnums implements EventType {
         EVENT
     }

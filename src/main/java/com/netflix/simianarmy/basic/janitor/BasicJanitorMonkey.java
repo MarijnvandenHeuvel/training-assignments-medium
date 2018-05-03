@@ -92,7 +92,7 @@ public class BasicJanitorMonkey extends JanitorMonkey {
         Monitors.registerObject("simianarmy.janitor", this);                
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void doMonkeyBusiness() {
         cfg.reload();

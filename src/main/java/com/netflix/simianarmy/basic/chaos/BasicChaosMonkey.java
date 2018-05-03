@@ -99,7 +99,7 @@ public class BasicChaosMonkey extends ChaosMonkey {
         }
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void doMonkeyBusiness() {
             context().resetEventReport();
@@ -202,7 +202,7 @@ public class BasicChaosMonkey extends ChaosMonkey {
         throw new RuntimeException("failed to terminate instance " + instance, e);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public Event recordTermination(InstanceGroup group, String instance, ChaosType chaosType) {
         Event evt = context().recorder().newEvent(Type.CHAOS, EventTypes.CHAOS_TERMINATION, group.region(), instance);
@@ -213,7 +213,7 @@ public class BasicChaosMonkey extends ChaosMonkey {
         return evt;
     }
     
-    /** {@inheritDoc} */
+
     @Override
     public int getPreviousTerminationCount(InstanceGroup group, Date after) {
         Map<String, String> query = new HashMap<String, String>();

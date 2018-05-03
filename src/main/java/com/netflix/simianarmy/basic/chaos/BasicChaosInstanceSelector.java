@@ -49,7 +49,7 @@ public class BasicChaosInstanceSelector implements ChaosInstanceSelector {
         return LOGGER;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public Collection<String> select(InstanceGroup group, double probability) {
         int n = ((int) probability);

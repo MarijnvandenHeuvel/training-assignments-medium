@@ -507,7 +507,7 @@ public class AWSClient implements CloudClient {
         return lcs;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void deleteAutoScalingGroup(String asgName) {
         Validate.notEmpty(asgName);
@@ -523,7 +523,7 @@ public class AWSClient implements CloudClient {
         }
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void deleteLaunchConfiguration(String launchConfigName) {
         Validate.notEmpty(launchConfigName);
@@ -535,7 +535,7 @@ public class AWSClient implements CloudClient {
         asgClient.deleteLaunchConfiguration(request);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void deleteImage(String imageId) {
         Validate.notEmpty(imageId);
@@ -546,7 +546,7 @@ public class AWSClient implements CloudClient {
         ec2Client.deregisterImage(request);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void deleteVolume(String volumeId) {
         Validate.notEmpty(volumeId);
@@ -556,7 +556,7 @@ public class AWSClient implements CloudClient {
         ec2Client.deleteVolume(request);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void deleteSnapshot(String snapshotId) {
         Validate.notEmpty(snapshotId);
@@ -566,7 +566,7 @@ public class AWSClient implements CloudClient {
         ec2Client.deleteSnapshot(request);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void deleteElasticLoadBalancer(String elbId) {
         Validate.notEmpty(elbId);
@@ -576,7 +576,7 @@ public class AWSClient implements CloudClient {
         elbClient.deleteLoadBalancer(request);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void deleteDNSRecord(String dnsName, String dnsType, String hostedZoneID) {
         Validate.notEmpty(dnsName);
@@ -609,7 +609,7 @@ public class AWSClient implements CloudClient {
         }
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void terminateInstance(String instanceId) {
         Validate.notEmpty(instanceId);
@@ -624,7 +624,7 @@ public class AWSClient implements CloudClient {
         }
     }
 
-    /** {@inheritDoc} */
+
     public void setInstanceSecurityGroups(String instanceId, List<String> groupIds) {
         Validate.notEmpty(instanceId);
         LOGGER.info(String.format("Removing all security groups from instance %s in region %s.", instanceId, region));
@@ -821,7 +821,7 @@ public class AWSClient implements CloudClient {
         return securityGroups;
     }
 
-    /** {@inheritDoc} */
+
     public String createSecurityGroup(String instanceId, String name, String description) {
         String vpcId = getVpcId(instanceId);
 
@@ -854,7 +854,7 @@ public class AWSClient implements CloudClient {
         return instance;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public synchronized ComputeService getJcloudsComputeService() {
         if (jcloudsComputeService == null) {
@@ -870,7 +870,7 @@ public class AWSClient implements CloudClient {
         return jcloudsComputeService;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public String getJcloudsId(String instanceId) {
         return this.region + "/" + instanceId;
@@ -918,7 +918,7 @@ public class AWSClient implements CloudClient {
         return node;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public String findSecurityGroup(String instanceId, String groupName) {
         String vpcId = getVpcId(instanceId);
@@ -957,7 +957,7 @@ public class AWSClient implements CloudClient {
         return vpcId;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public boolean canChangeInstanceSecurityGroups(String instanceId) {
         return null != getVpcId(instanceId);

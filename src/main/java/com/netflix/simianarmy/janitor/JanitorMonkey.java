@@ -120,19 +120,19 @@ public abstract class JanitorMonkey extends Monkey {
         OPT_OUT_RESOURCE
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public final Type type() {
         return Type.JANITOR;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public Context context() {
         return ctx;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public abstract void doMonkeyBusiness();
 

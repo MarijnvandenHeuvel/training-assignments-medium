@@ -329,7 +329,7 @@ public class BasicSimianArmyContext implements Monkey.Context {
         System.setProperty("aws.secretKey", secretKey);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public MonkeyScheduler scheduler() {
         return scheduler;
@@ -345,7 +345,7 @@ public class BasicSimianArmyContext implements Monkey.Context {
         this.scheduler = scheduler;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public MonkeyCalendar calendar() {
         return calendar;
@@ -361,7 +361,7 @@ public class BasicSimianArmyContext implements Monkey.Context {
         this.calendar = calendar;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public MonkeyConfiguration configuration() {
         return config;
@@ -377,7 +377,7 @@ public class BasicSimianArmyContext implements Monkey.Context {
         this.config = (BasicConfiguration) configuration;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public CloudClient cloudClient() {
         return client;
@@ -393,7 +393,7 @@ public class BasicSimianArmyContext implements Monkey.Context {
         this.client = (AWSClient) cloudClient;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public MonkeyRecorder recorder() {
         return recorder;

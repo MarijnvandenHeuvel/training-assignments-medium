@@ -255,7 +255,7 @@ public class BasicConformityMonkeyContext extends BasicSimianArmyContext impleme
         return ruleEngine;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public ConformityEmailNotifier emailNotifier() {
         return emailNotifier;

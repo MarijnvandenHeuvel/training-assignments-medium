@@ -95,7 +95,7 @@ public class OldEmptyASGRule implements Rule {
         this.instanceValidator = instanceValidator;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public boolean isValid(Resource resource) {
         Validate.notNull(resource);

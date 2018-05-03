@@ -104,7 +104,7 @@ public class BasicConformityMonkey extends ConformityMonkey {
         leashed = ctx.isLeashed();
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void doMonkeyBusiness() {
         cfg.reload();

@@ -80,7 +80,7 @@ public class SimpleDBConformityClusterTracker implements ConformityClusterTracke
         return simpleDBClient;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public void addOrUpdate(Cluster cluster) {
         List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>();

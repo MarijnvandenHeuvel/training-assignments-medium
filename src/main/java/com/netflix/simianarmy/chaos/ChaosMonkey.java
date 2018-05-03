@@ -99,19 +99,19 @@ public abstract class ChaosMonkey extends Monkey {
         CHAOS_TERMINATION, CHAOS_TERMINATION_SKIPPED
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public final Type type() {
         return Type.CHAOS;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public Context context() {
         return ctx;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public abstract void doMonkeyBusiness();
 

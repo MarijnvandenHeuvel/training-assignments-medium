@@ -50,7 +50,7 @@ public class DiscoveryASGInstanceValidator implements ASGInstanceValidator {
         this.discoveryClient = discoveryClient;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public boolean hasActiveInstance(Resource resource) {
         String instanceIds = resource.getAdditionalField(ASGJanitorCrawler.ASG_FIELD_INSTANCES);

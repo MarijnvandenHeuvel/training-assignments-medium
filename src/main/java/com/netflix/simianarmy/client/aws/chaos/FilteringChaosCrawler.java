@@ -38,19 +38,19 @@ public class FilteringChaosCrawler implements ChaosCrawler {
         this.predicate = predicate;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public EnumSet<?> groupTypes() {
         return crawler.groupTypes();
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public List<InstanceGroup> groups() {
         return filter(crawler.groups());
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public List<InstanceGroup> groups(String... names) {
         return filter(crawler.groups(names));

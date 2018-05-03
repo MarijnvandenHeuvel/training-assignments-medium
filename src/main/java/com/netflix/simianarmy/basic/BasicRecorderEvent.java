@@ -91,37 +91,37 @@ public class BasicRecorderEvent implements MonkeyRecorder.Event {
         this.date = new Date(time);
     }
 
-    /** {@inheritDoc} */
+
     public String id() {
         return id;
     }
 
-    /** {@inheritDoc} */
+
     public String region() {
         return region;
     }
 
-    /** {@inheritDoc} */
+
     public Date eventTime() {
         return new Date(date.getTime());
     }
 
-    /** {@inheritDoc} */
+
     public MonkeyType monkeyType() {
         return monkeyType;
     }
 
-    /** {@inheritDoc} */
+
     public EventType eventType() {
         return eventType;
     }
 
-    /** {@inheritDoc} */
+
     public Map<String, String> fields() {
         return Collections.unmodifiableMap(fields);
     }
 
-    /** {@inheritDoc} */
+
     public String field(String name) {
         return fields.get(name);
     }
@@ -138,7 +138,7 @@ public class BasicRecorderEvent implements MonkeyRecorder.Event {
         return this;
     }
 
-    /** {@inheritDoc} */
+
     public MonkeyRecorder.Event addField(String name, String value) {
         fields.put(name, value);
         return this;

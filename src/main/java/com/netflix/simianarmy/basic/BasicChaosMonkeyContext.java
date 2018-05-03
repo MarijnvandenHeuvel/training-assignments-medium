@@ -66,7 +66,7 @@ public class BasicChaosMonkeyContext extends BasicSimianArmyContext implements C
         setChaosEmailNotifier(new BasicChaosEmailNotifier(cfg, sesClient, null));
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public ChaosCrawler chaosCrawler() {
         return crawler;
@@ -82,7 +82,7 @@ public class BasicChaosMonkeyContext extends BasicSimianArmyContext implements C
         this.crawler = chaosCrawler;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public ChaosInstanceSelector chaosInstanceSelector() {
         return selector;

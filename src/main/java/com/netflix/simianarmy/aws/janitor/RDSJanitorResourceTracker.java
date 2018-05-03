@@ -102,7 +102,7 @@ public class RDSJanitorResourceTracker implements JanitorResourceTracker {
 		return email;
 	}
 
-	/** {@inheritDoc} */
+
     @Override
     public void addOrUpdate(Resource resource) {
     	Resource orig = getResource(resource.getId(), resource.getRegion());

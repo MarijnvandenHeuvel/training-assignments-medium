@@ -103,28 +103,28 @@ public class BasicJanitorRuleEngine implements JanitorRuleEngine {
         }
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public BasicJanitorRuleEngine addRule(Rule rule) {
         rules.add(rule);
         return this;
     }
 
-    /** {@inheritDoc} */
+
     @Override
     public BasicJanitorRuleEngine addExclusionRule(Rule rule){
         exclusionRules.add(rule);
         return this;
     }
 
-   /** {@inheritDoc} */
+
     @Override
     public List<Rule> getRules() {
         return this.rules;
     }
 
 
-    /** {@inheritDoc} */
+
     @Override
     public List<Rule> getExclusionRules() {
         return this.exclusionRules;

@@ -40,7 +40,7 @@ public class BavarianCalendar extends BasicCalendar
         super(cfg);
     }
 
-    /** {@inheritDoc} */
+
     @Override
     protected void loadHolidays(int year) {
         holidays.clear();
