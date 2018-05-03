@@ -107,21 +107,25 @@ public class ELBJanitorCrawler extends AbstractAWSJanitorCrawler {
         }
 
         Map<String, List<String>> elbtoASGMap = buildELBtoASGMap();
+        mapper(resources, elbtoASGMap, LOGGER);
+
+        return resources;
+    }
+
+    public static void mapper(List<Resource> resources, Map<String, List<String>> elbtoASGMap, Logger logger) {
         for(Resource resource : resources) {
             List<String> asgList = elbtoASGMap.get(resource.getId());
             if (asgList != null && asgList.size() > 0) {
                 resource.setAdditionalField("referencedASGCount", "" + asgList.size());
                 String asgStr = StringUtils.join(asgList,",");
                 resource.setDescription(resource.getDescription() + ", ASGS=" + asgStr);
-                LOGGER.debug(String.format("Resource ELB %s is referenced by ASGs %s", resource.getId(), asgStr));
+                logger.debug(String.format("Resource ELB %s is referenced by ASGs %s", resource.getId(), asgStr));
             } else {
                 resource.setAdditionalField("referencedASGCount", "0");
                 resource.setDescription(resource.getDescription() + ", ASGS=none");
-                LOGGER.debug(String.format("No ASGs found for ELB %s", resource.getId()));
+                logger.debug(String.format("No ASGs found for ELB %s", resource.getId()));
             }
         }
-
-        return resources;
     }
 
     private Map<String, List<String>> buildELBtoASGMap() {

@@ -23,6 +23,7 @@ import com.netflix.simianarmy.Resource;
 import com.netflix.simianarmy.ResourceType;
 import com.netflix.simianarmy.aws.AWSResource;
 import com.netflix.simianarmy.aws.AWSResourceType;
+import com.netflix.simianarmy.aws.janitor.crawler.ELBJanitorCrawler;
 import com.netflix.simianarmy.basic.BasicSimianArmyContext;
 import com.netflix.simianarmy.client.edda.EddaClient;
 import com.netflix.simianarmy.janitor.JanitorCrawler;
@@ -159,19 +160,7 @@ public class EddaELBJanitorCrawler implements JanitorCrawler {
         }
 
         Map<String, List<String>> elBtoASGMap = buildELBtoASGMap(region);
-        for(Resource resource : resources) {
-            List<String> asgList = elBtoASGMap.get(resource.getId());
-            if (asgList != null && asgList.size() > 0) {
-                resource.setAdditionalField("referencedASGCount", "" + asgList.size());
-                String asgStr = StringUtils.join(asgList,",");
-                resource.setDescription(resource.getDescription() + ", ASGS=" + asgStr);
-                LOGGER.debug(String.format("Resource ELB %s is referenced by ASGs %s", resource.getId(), asgStr));
-            } else {
-                resource.setAdditionalField("referencedASGCount", "0");
-                resource.setDescription(resource.getDescription() + ", ASGS=none");
-                LOGGER.debug(String.format("No ASGs found for ELB %s", resource.getId()));
-            }
-        }
+        ELBJanitorCrawler.mapper(resources, elBtoASGMap, LOGGER);
 
         Map<String, List<DNSEntry>> elBtoDNSMap = buildELBtoDNSMap(region);
         for(Resource resource : resources) {
