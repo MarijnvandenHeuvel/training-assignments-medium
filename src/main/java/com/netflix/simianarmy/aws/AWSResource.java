@@ -88,7 +88,6 @@ public class AWSResource implements Resource {
     /** The map from AWS tag key to value for the resource. **/
     private final Map<String, String> tags = new HashMap<String, String>();
 
-    /** {@inheritDoc} */
     @Override
     public Map<String, String> getFieldToValueMap() {
         Map<String, String> fieldToValue = new HashMap<String, String>();
@@ -170,247 +169,208 @@ public class AWSResource implements Resource {
         this.awsResourceState = awsState;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String getId() {
         return id;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setId(String id) {
         this.id = id;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Resource withId(String resourceId) {
         setId(resourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceType getResourceType() {
         return resourceType;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setResourceType(ResourceType resourceType) {
         this.resourceType = resourceType;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Resource withResourceType(ResourceType type) {
         setResourceType(type);
         return this;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String getRegion() {
         return region;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setRegion(String region) {
         this.region = region;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Resource withRegion(String resourceRegion) {
         setRegion(resourceRegion);
         return this;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String getOwnerEmail() {
         return ownerEmail;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setOwnerEmail(String ownerEmail) {
         this.ownerEmail = ownerEmail;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Resource withOwnerEmail(String resourceOwner) {
         setOwnerEmail(resourceOwner);
         return this;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String getDescription() {
         return description;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Resource withDescription(String resourceDescription) {
         setDescription(resourceDescription);
         return this;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Date getLaunchTime() {
         return getCopyOfDate(launchTime);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLaunchTime(Date launchTime) {
         this.launchTime = getCopyOfDate(launchTime);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Resource withLaunchTime(Date resourceLaunchTime) {
         setLaunchTime(resourceLaunchTime);
         return this;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Date getMarkTime() {
         return getCopyOfDate(markTime);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setMarkTime(Date markTime) {
         this.markTime = getCopyOfDate(markTime);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Resource withMarkTime(Date resourceMarkTime) {
         setMarkTime(resourceMarkTime);
         return this;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Date getExpectedTerminationTime() {
         return getCopyOfDate(expectedTerminationTime);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setExpectedTerminationTime(Date expectedTerminationTime) {
         this.expectedTerminationTime = getCopyOfDate(expectedTerminationTime);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Resource withExpectedTerminationTime(Date resourceExpectedTerminationTime) {
         setExpectedTerminationTime(resourceExpectedTerminationTime);
         return this;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Date getActualTerminationTime() {
         return getCopyOfDate(actualTerminationTime);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setActualTerminationTime(Date actualTerminationTime) {
         this.actualTerminationTime = getCopyOfDate(actualTerminationTime);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Resource withActualTerminationTime(Date resourceActualTerminationTime) {
         setActualTerminationTime(resourceActualTerminationTime);
         return this;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Date getNotificationTime() {
         return getCopyOfDate(notificationTime);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setNotificationTime(Date notificationTime) {
         this.notificationTime = getCopyOfDate(notificationTime);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Resource withNnotificationTime(Date resourceNotificationTime) {
         setNotificationTime(resourceNotificationTime);
         return this;
     }
 
-    /** {@inheritDoc} */
     @Override
     public CleanupState getState() {
         return state;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setState(CleanupState state) {
         this.state = state;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Resource withState(CleanupState resourceState) {
         setState(resourceState);
         return this;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String getTerminationReason() {
         return terminationReason;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setTerminationReason(String terminationReason) {
         this.terminationReason = terminationReason;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Resource withTerminationReason(String resourceTerminationReason) {
         setTerminationReason(resourceTerminationReason);
         return this;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isOptOutOfJanitor() {
         return optOutOfJanitor;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setOptOutOfJanitor(boolean optOutOfJanitor) {
         this.optOutOfJanitor = optOutOfJanitor;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Resource withOptOutOfJanitor(boolean optOut) {
         setOptOutOfJanitor(optOut);
@@ -501,19 +461,16 @@ public class AWSResource implements Resource {
         return clone;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setTag(String key, String value) {
         tags.put(key, value);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String getTag(String key) {
         return tags.get(key);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Collection<String> getAllTagKeys() {
         return tags.keySet();
