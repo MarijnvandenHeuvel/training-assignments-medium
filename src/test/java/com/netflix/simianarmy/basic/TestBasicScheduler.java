@@ -27,6 +27,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -38,6 +40,8 @@ import com.netflix.simianarmy.TestMonkeyContext;
 
 // CHECKSTYLE IGNORE MagicNumber
 public class TestBasicScheduler {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(TestBasicScheduler.class);
 
     @Test
     public void testConstructors() {
@@ -52,7 +56,9 @@ public class TestBasicScheduler {
 
     private enum Enums implements MonkeyType {
         MONKEY
-    };
+    }
+
+    ;
 
     private enum EventEnums implements EventType {
         EVENT
@@ -101,7 +107,7 @@ public class TestBasicScheduler {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.MINUTE, -5);
         BasicRecorderEvent evt = new BasicRecorderEvent(
-            Enums.MONKEY, EventEnums.EVENT, "region", "test-id", cal.getTime().getTime());
+                Enums.MONKEY, EventEnums.EVENT, "region", "test-id", cal.getTime().getTime());
         context.recorder().recordEvent(evt);
 
         // this time when it runs it will not run immediately since it should be scheduled for 55m from now.
@@ -110,7 +116,8 @@ public class TestBasicScheduler {
         try {
             task.get(100, TimeUnit.MILLISECONDS);
             Assert.fail("The task shouldn't have been completed in 100ms");
-        } catch (TimeoutException e) { // NOPMD - This is an expected exception
+        } catch (TimeoutException e) {
+            LOGGER.info("TimeOut occurred");
         }
         sched.stop(mockMonkey);
     }
